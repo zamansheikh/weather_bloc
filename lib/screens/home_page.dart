@@ -38,14 +38,14 @@ class _HomePageState extends State<HomePage> {
   String getGreeting() {
     final hour = DateTime.now().hour;
 
-    if (hour < 12) {
-      return 'Good Morning';
-    } else if (hour < 17) {
-      return 'Good Afternoon';
-    } else if (hour < 21) {
-      return 'Good Evening';
-    } else {
+    if (hour < 6) {
       return 'Good Night';
+    } else if (hour < 12) {
+      return 'Good Morning';
+    } else if (hour < 18) {
+      return 'Good Afternoon';
+    } else {
+      return 'Good Evening';
     }
   }
 
@@ -118,8 +118,12 @@ class _HomePageState extends State<HomePage> {
                     );
                   }
                   if (state is WeatherFailure) {
-                    return const Center(
-                      child: Text("Api Data Fatching Failed!"),
+                    return Center(
+                      child: ElevatedButton(
+                          onPressed: () {
+                            context.read<WeatherBloc>().add(FetchWeather());
+                          },
+                          child: const Text("Try Again")),
                     );
                   }
                   if (state is WeatherSuccess) {
