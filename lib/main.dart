@@ -4,7 +4,8 @@ import 'package:weather_bloc/screens/home_page.dart';
 import 'package:weather_bloc/weather_bloc/weather_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -13,22 +14,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => WeatherBloc()..add(FetchWeather()),
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
-        home: FutureBuilder(
-          future: _determinePosition(),
-          builder: (context, location) {
-            return const HomePage();
-          },
-        ),
-      ),
-    );
+    return FutureBuilder(
+        future: _determinePosition(),
+        builder: (context, position) {
+          return BlocProvider(
+            create: (context) => WeatherBloc()..add(FetchWeather()),
+            child: MaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'Flutter Demo',
+              theme: ThemeData(
+                colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+                useMaterial3: true,
+              ),
+              home: const HomePage(),
+            ),
+          );
+        });
   }
 
   Future<Position> _determinePosition() async {
