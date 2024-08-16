@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:weather_bloc/weather_bloc/weather_bloc.dart';
@@ -37,16 +36,23 @@ class _HomePageState extends State<HomePage> {
   }
 
   String getGreeting() {
-    final hour = DateTime.now().hour;
+    final now = DateTime.now();
+    final hour = now.hour;
 
-    if (hour < 6) {
+    if (hour < 5) {
       return 'Good Night';
     } else if (hour < 12) {
       return 'Good Morning';
-    } else if (hour < 18) {
+    } else if (hour == 12) {
+      return 'Good Noon';
+    } else if (hour < 17) {
       return 'Good Afternoon';
-    } else {
+    } else if (hour < 18) {
+      return 'Early Evening';
+    } else if (hour < 22) {
       return 'Good Evening';
+    } else {
+      return 'Good Night';
     }
   }
 
@@ -342,11 +348,13 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           const Center(
-                            child: Text("Made <3 with Mehu",
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontWeight: FontWeight.w300,
-                            ),),
+                            child: Text(
+                              "Made <3 with Mehu",
+                              style: TextStyle(
+                                color: Colors.blueGrey,
+                                fontWeight: FontWeight.w300,
+                              ),
+                            ),
                           ),
                         ],
                       ),
