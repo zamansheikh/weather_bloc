@@ -45,6 +45,7 @@ dependencies:
   rename_app: ^1.6.1
   icons_launcher: ^2.1.7
   flutter_native_splash: ^2.4.0
+  flutter_screenutil: ^5.9.3
 
 dev_dependencies:
   flutter_test:

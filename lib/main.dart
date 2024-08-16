@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:weather_bloc/screens/home_page.dart';
 import 'package:weather_bloc/weather_bloc/weather_bloc.dart';
 import 'package:geolocator/geolocator.dart';
@@ -14,21 +15,28 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: _determinePosition(),
-        builder: (context, position) {
-          return BlocProvider(
-            create: (context) => WeatherBloc()..add(FetchWeather()),
-            child: MaterialApp(
-              debugShowCheckedModeBanner: false,
-              title: 'Flutter Demo',
-              theme: ThemeData(
-                colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-                useMaterial3: true,
-              ),
-              home: const HomePage(),
-            ),
-          );
+    return ScreenUtilInit(
+        designSize: const Size(393, 851),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (_, child) {
+          return FutureBuilder(
+              future: _determinePosition(),
+              builder: (context, position) {
+                return BlocProvider(
+                  create: (context) => WeatherBloc()..add(FetchWeather()),
+                  child: MaterialApp(
+                    debugShowCheckedModeBanner: false,
+                    title: 'Flutter Demo',
+                    theme: ThemeData(
+                      colorScheme:
+                          ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+                      useMaterial3: true,
+                    ),
+                    home: const HomePage(),
+                  ),
+                );
+              });
         });
   }
 

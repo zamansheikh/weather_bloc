@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:weather_bloc/weather_bloc/weather_bloc.dart';
 
@@ -69,16 +70,16 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(40, 10, 40, 20),
+        padding: EdgeInsets.fromLTRB(40.sp, 10.sp, 40.sp, 20.sp),
         child: SizedBox(
           height: MediaQuery.of(context).size.height,
           child: Stack(
             children: [
               Align(
-                alignment: const AlignmentDirectional(3, -0.3),
+                alignment: AlignmentDirectional(15.sp, -0.2.sp),
                 child: Container(
-                  height: 300,
-                  width: 300,
+                  height: 300.sp,
+                  width: 300.sp,
                   decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.deepPurple,
@@ -86,10 +87,10 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               Align(
-                alignment: const AlignmentDirectional(-3, -0.3),
+                alignment: AlignmentDirectional(-15.sp, -0.2.sp),
                 child: Container(
-                  height: 300,
-                  width: 300,
+                  height: 300.sp,
+                  width: 300.sp,
                   decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.deepPurple,
@@ -97,7 +98,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               Align(
-                alignment: const AlignmentDirectional(0, -1.2),
+                alignment: AlignmentDirectional(0.sp, -1.3.sp),
                 child: Container(
                   height: 300,
                   width: 300,
