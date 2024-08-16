@@ -15,17 +15,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-        designSize: const Size(393, 851),
-        minTextAdapt: true,
-        splitScreenMode: true,
-        builder: (_, child) {
-          return FutureBuilder(
-              future: _determinePosition(),
-              builder: (context, position) {
-                return BlocProvider(
-                  create: (context) => WeatherBloc()..add(FetchWeather()),
-                  child: MaterialApp(
+    return FutureBuilder(
+        future: _determinePosition(),
+        builder: (context, position) {
+          return BlocProvider(
+            create: (context) => WeatherBloc()..add(FetchWeather()),
+            child: ScreenUtilInit(
+                designSize: const Size(393, 851),
+                minTextAdapt: true,
+                splitScreenMode: true,
+                builder: (_, child) {
+                  return MaterialApp(
                     debugShowCheckedModeBanner: false,
                     title: 'Flutter Demo',
                     theme: ThemeData(
@@ -34,9 +34,9 @@ class MyApp extends StatelessWidget {
                       useMaterial3: true,
                     ),
                     home: const HomePage(),
-                  ),
-                );
-              });
+                  );
+                }),
+          );
         });
   }
 

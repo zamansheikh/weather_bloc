@@ -127,11 +127,24 @@ class _HomePageState extends State<HomePage> {
                   }
                   if (state is WeatherFailure) {
                     return Center(
-                      child: ElevatedButton(
-                          onPressed: () {
-                            context.read<WeatherBloc>().add(FetchWeather());
-                          },
-                          child: const Text("Try Again")),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("Turn on your location & Internet!!!",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20.sp,
+                              )),
+                          SizedBox(
+                            height: 10.sp,
+                          ),
+                          ElevatedButton(
+                              onPressed: () {
+                                context.read<WeatherBloc>().add(FetchWeather());
+                              },
+                              child: const Text("Try Again")),
+                        ],
+                      ),
                     );
                   }
                   if (state is WeatherSuccess) {
@@ -149,13 +162,13 @@ class _HomePageState extends State<HomePage> {
                               fontWeight: FontWeight.w300,
                             ),
                           ),
-                          const SizedBox(
-                            height: 8,
+                          SizedBox(
+                            height: 8.sp,
                           ),
                           Text(
                             getGreeting(),
-                            style: const TextStyle(
-                              fontSize: 25,
+                            style: TextStyle(
+                              fontSize: 25.sp,
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                             ),
